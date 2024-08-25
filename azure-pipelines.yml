@@ -6,7 +6,7 @@
 trigger: none
 
 pool:
-  vmImage: Azure Pipelines
+  name: CppDemoPool
 
 steps:
 - script: echo Hello, world!
