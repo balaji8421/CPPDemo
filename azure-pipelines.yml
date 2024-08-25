@@ -8,11 +8,18 @@ trigger: none
 pool:
   name: CppDemoPool
 
+variables:
+  buildConfiguration: 'Release'
+  buildDirectory: 'build'
+
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: |
+     mkdir -p $(buildDirectory)
+     cd $(buildDirectory)
+     cmake ..
+     cmake --build . --config $(buildConfiguration)
+  displayName: 'Build with Cmake'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+     ./$(buildDirectory)/main
+  displayName: 'Run Hello World'
