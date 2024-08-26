@@ -11,7 +11,7 @@ FetchContent_MakeAvailable(googletest)
 
 # Now simply link against gtest or gtest_main as needed. Eg
 add_executable(test_hello test_hello.cpp)
-target_link_libraries(test_hello gtest_main hello_world)
+target_link_libraries(test_hello gtest_main hello_lib)
 
 # Include the main project source directory
 target_include_directories(test_hello PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src)
