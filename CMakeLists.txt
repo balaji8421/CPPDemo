@@ -1,20 +1,24 @@
-# stop if cmake version is below 3.0
-cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.10)
 
-# project name and enable C++ support
-project(hello LANGUAGES CXX)
+# Project name and version
+project(HelloWorld VERSION 1.0)
 
-# require C++11
+# Set the C++ standard
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# we define the executable
-add_executable(main.x "")
+# Add source files
+add_executable(hello_world src/main.cpp src/hello.cpp)
 
-# and its sources
-target_sources(
-  main.x
-  PRIVATE
-    main.cpp
-  )
+# Include directories
+target_include_directories(hello_world PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+# Add the tests
+enable_testing()
+add_subdirectory(tests)
+
+# Define a custom target for running tests
+add_custom_target(run_tests
+    COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure
+    DEPENDS test_hello)

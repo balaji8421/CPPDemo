@@ -1,3 +1,0 @@
-/home/vboxuser/Desktop/Demo/CPPDemo/build/CMakeFiles/main.x.dir
-/home/vboxuser/Desktop/Demo/CPPDemo/build/CMakeFiles/edit_cache.dir
-/home/vboxuser/Desktop/Demo/CPPDemo/build/CMakeFiles/rebuild_cache.dir
