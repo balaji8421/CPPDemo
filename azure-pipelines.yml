@@ -22,7 +22,7 @@ steps:
 - script: |
      mkdir -p $(buildDirectory)
      cd $(buildDirectory)
-     cmake ..
+     cmake .. -DCMAKE_BUILD_TYPE=$(buildConfiguration)
      cmake --build . --config $(buildConfiguration)
   displayName: 'CMake Clean and Build'
 
@@ -31,6 +31,6 @@ steps:
   displayName: 'Run unit testing'
 
 - script: |
-     ./$(buildDirectory)/hello
+     ./$(buildDirectory)/hello_world
   displayName: 'Run Hello World'
 
