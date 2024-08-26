@@ -1,0 +1,36 @@
+trigger: none
+
+pool:
+  name: 'CppDemoPool'
+
+variables:
+  buildConfiguration: 'Release'
+  buildDirectory: 'build'
+
+steps:
+
+- checkout: self
+
+- script: |
+     rm -rf $(buildDirectory)
+  displayName: "Clean Priovous Buil"
+
+- script: |
+     cppcheck --enable=all --suppress=missingIncludeSystem --xml --xml-version=2 .
+  displayName: 'Run Cppcheck (Static Code Analysis)'
+
+- script: |
+     mkdir -p $(buildDirectory)
+     cd $(buildDirectory)
+     cmake ..
+     cmake --build . --config $(buildConfiguration)
+  displayName: 'CMake Clean and Build'
+
+- script: |
+     ctest --output-on-failure
+  displayName: 'Run unit testing'
+
+- script: |
+     ./$(buildDirectory)/hello
+  displayName: 'Run Hello World'
+
