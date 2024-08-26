@@ -1,6 +1,6 @@
-#ifndef HEELO_H
+#ifndef HELLO_H
 #define HELLO_H
 
-void hello():
+void hello();
 
 #endif
