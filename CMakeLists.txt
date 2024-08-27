@@ -8,6 +8,14 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Enable code coverage if CMAKE_BUILD_TYPE is set to 'Coverage'
+if(CMAKE_BUILD_TYPE MATCHES Coverage)
+    message(STATUS "Code Coverage enabled")
+    # Set the compiler flags for coverage
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
+endif()
+
 # Add source files for the main application as library
 add_library(hello_lib src/hello.cpp )
 
