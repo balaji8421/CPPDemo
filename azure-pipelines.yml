@@ -37,13 +37,13 @@ steps:
      genhtml coverage_filtered.info --output-directory coverage_report
   displayName: 'Generate Code Coverage Report'
 
-- script: |
-     ./$(buildDirectory)/hello_world
-  displayName: 'Run Hello World'
-
 - task: PublishBuildArtifacts@1
   inputs:
      pathtoPublish: '$(Build.SourcesDirectory)/coverage_report'
      artifactName: 'coverage_report'
      publishLocation: 'Container'
   displayName: 'Publish Code Coverage Report'
+
+- script: |
+     ./$(buildDirectory)/hello_world
+  displayName: 'Run Hello World'
