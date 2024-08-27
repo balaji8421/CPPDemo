@@ -27,6 +27,7 @@ steps:
   displayName: 'CMake Clean and Build'
 
 - script: |
+     cd $(buildDirectory)
      ctest --output-on-failure
   displayName: 'Run unit testing'
 
