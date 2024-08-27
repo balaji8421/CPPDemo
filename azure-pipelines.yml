@@ -4,7 +4,7 @@ pool:
   name: 'CppDemoPool'
 
 variables:
-  buildConfiguration: 'Release'
+  buildConfiguration: 'Coverage'
   buildDirectory: 'build'
 
 steps:
