@@ -33,6 +33,6 @@ enable_testing()
 add_subdirectory(tests)
 
 # Define a custom target for running tests
-#add_custom_target(run_tests
-#    COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure
-#   DEPENDS test_hello)
+add_custom_target(run_tests
+    COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure
+   DEPENDS test_hello)

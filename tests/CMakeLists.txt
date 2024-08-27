@@ -16,4 +16,5 @@ target_link_libraries(test_hello gtest_main hello_lib)
 # Include the main project source directory
 target_include_directories(test_hello PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src)
 
+# Register the test with CTest
 add_test(NAME test_hello COMMAND test_hello)
