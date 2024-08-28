@@ -7,6 +7,9 @@ WORKDIR /usr/src/app
 # Copy the current directory contents into the container at /usr/src/app
 COPY . .
 
+#Clean up the preious build
+RUN rm -rf build
+
 # Install CMake
 RUN apt-get update && apt-get install -y cmake
 
