@@ -4,7 +4,7 @@ pool:
   name: 'CppDemoPool'
 
 variables:
-  buildConfiguration: 'Release'
+  buildConfiguration: 'Coverage'
   buildDirectory: 'build'
 
 steps:
@@ -27,18 +27,15 @@ steps:
   displayName: 'CMake Clean and Build'
 
 - script: |
+     cd $(buildDirectory)
      ctest --output-on-failure
   displayName: 'Run unit testing'
 
 - script: |
-     lcov --capture --directory . --output-file coverage.info
+     lcov --capture --directory $(buildDirectory) --output-file coverage.info
      lcov --remove coverage.info '/usr/*' '*/test/*' '*/googletest/*' --output-file coverage_filtered.info
      genhtml coverage_filtered.info --output-directory coverage_report
   displayName: 'Generate Code Coverage Report'
-
-- script: |
-     ./$(buildDirectory)/hello_world
-  displayName: 'Run Hello World'
 
 - task: PublishBuildArtifacts@1
   inputs:
@@ -46,3 +43,7 @@ steps:
      artifactName: 'coverage_report'
      publishLocation: 'Container'
   displayName: 'Publish Code Coverage Report'
+
+- script: |
+     ./$(buildDirectory)/hello_world
+  displayName: 'Run Hello World'
