@@ -6,6 +6,7 @@ pool:
 variables:
   buildConfiguration: 'Coverage'
   buildDirectory: 'build'
+  dockerImageName: 'cppapplication'
 
 steps:
 
