@@ -54,11 +54,6 @@ steps:
     Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
     tags: 'latest'
 
-- script: |
-    docker run --rm $(dockerImageName):$(Build.BuildId)
-  condition: succeeded()
-  displayName: 'Run Docker Image'
-
 - task: Kubernetes@1
   inputs:
     connectionType: 'Kubernetes Service Connection'
