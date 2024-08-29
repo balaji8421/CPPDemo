@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cpp-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cppapplication
+  template:
+    metadata:
+      labels:
+        app: cppapplication
+    spec:
+      containers:
+      - name: cpp-app-container
+        image: Balaji8421/cppapplication:latest  # Pulling Docker Hub image from dockerhub registry
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cpp-app-service
+spec:
+  type: NodePort  # This will expose service on a port on the local machine
+  selector:
+    app: cppapplication
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 30007  # Kubernetes will expose service on this port
