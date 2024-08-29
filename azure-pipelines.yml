@@ -52,8 +52,7 @@ steps:
     repository: '$(dockerImageName)'
     command: 'buildAndPush'
     Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-    tags: |
-      $(Build.BuildId)
+    tags: 'latest'
 
 - script: |
     docker run --rm $(dockerImageName):$(Build.BuildId)
