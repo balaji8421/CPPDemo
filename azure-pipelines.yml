@@ -65,7 +65,7 @@ steps:
   inputs:
     serviceConnectionEndpoint: 'snykconnection'
     testType: 'container'
-    dockerImageName: 'cppapplication'
+    dockerImageName: 'balaji8421/cppapplication'
     dockerfilePath: 'Dockerfile'
     monitorWhen: 'always'
     failOnIssues: true
