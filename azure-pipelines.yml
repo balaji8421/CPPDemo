@@ -52,10 +52,12 @@ steps:
     repository: '$(dockerImageName)'
     command: 'buildAndPush'
     Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-    tags: |
-      $(Build.BuildId)
+    tags: 'latest'
 
-- script: |
-    docker run --rm $(dockerImageName):$(Build.BuildId)
-  condition: succeeded()
-  displayName: 'Run Docker Image'
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'k8s-connection'
+    namespace: 'default'
+    command: 'apply'
+    arguments: '-f k8s/deployment.yaml -f k8s/service.yaml'
