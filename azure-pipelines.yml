@@ -67,7 +67,6 @@ steps:
     testType: 'container'
     dockerImageName: 'cppapplication:latest'
     dockerfilePath: 'Dockerfile'
-    severityThreshold: 'low'
     monitorWhen: 'always'
     failOnIssues: true
 
