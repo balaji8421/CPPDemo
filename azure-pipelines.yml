@@ -65,7 +65,7 @@ steps:
   inputs:
     serviceConnectionEndpoint: 'snykconnection'
     testType: 'container'
-    dockerImageName: 'cppapplication:latest'
+    dockerImageName: 'cppapplication'
     dockerfilePath: 'Dockerfile'
     monitorWhen: 'always'
     failOnIssues: true
