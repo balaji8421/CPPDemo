@@ -21,7 +21,7 @@ steps:
     serviceConnectionEndpoint: 'snykconnection'
     testType: 'code'
     failOnIssues: true
-    projectName: 'CPPDemocode'
+    projectName: 'CPPDemo'
 
 - script: |
      cppcheck --enable=all --suppress=missingIncludeSystem --xml --xml-version=2 .
@@ -68,7 +68,7 @@ steps:
     dockerImageName: 'cppapplication'
     monitorWhen: 'always'
     failOnIssues: true
-    projectName: 'CPPDemoimage'
+    projectName: 'CPPDemo'
 
 - task: Kubernetes@1
   inputs:
