@@ -14,6 +14,7 @@ spec:
     spec:
       containers:
       - name: cpp-app-container
-        image: Balaji8421/cppapplication:latest  # Pulling Docker Hub image from dockerhub registry
+        image: balaji8421/cppapplication:latest  # Pulling Docker Hub image from dockerhub registry
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
