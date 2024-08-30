@@ -16,6 +16,13 @@ steps:
      rm -rf $(buildDirectory)
   displayName: "Clean Priovous Buil"
 
+- task: SnykSecurityScan@1
+  inputs:
+    serviceConnectionEndpoint: 'snykconnection'
+    testType: 'code'
+    failOnIssues: true
+    projectName: 'CPPDemo'
+
 - script: |
      cppcheck --enable=all --suppress=missingIncludeSystem --xml --xml-version=2 .
   displayName: 'Run Cppcheck (Static Code Analysis)'
@@ -53,6 +60,15 @@ steps:
     command: 'buildAndPush'
     Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
     tags: 'latest'
+
+- task: SnykSecurityScan@1
+  inputs:
+    serviceConnectionEndpoint: 'snykconnection'
+    testType: 'container'
+    dockerImageName: 'cppapplication'
+    monitorWhen: 'always'
+    failOnIssues: true
+    projectName: 'CPPDemo'
 
 - task: Kubernetes@1
   inputs:
