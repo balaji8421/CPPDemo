@@ -18,10 +18,10 @@ steps:
 
 - task: SnykSecurityScan@1
   inputs:
-    serviceConnectionEndpoint: 'snykconnection'
-    testType: 'code'
+    command: test
+    projectName: '$(Build.Repository.Name)'
+    severityThreshold: 'low'
     failOnIssues: true
-    projectName: 'CPPDemo'
 
 - script: |
      cppcheck --enable=all --suppress=missingIncludeSystem --xml --xml-version=2 .
@@ -63,12 +63,13 @@ steps:
 
 - task: SnykSecurityScan@1
   inputs:
+    command: monitor
     serviceConnectionEndpoint: 'snykconnection'
     testType: 'container'
-    dockerImageName: 'cppapplication'
+    dockerImageName: 'cppapplication:latest'
+    severityThreshold: 'low'
     monitorWhen: 'always'
     failOnIssues: true
-    projectName: 'CPPDemo'
 
 - task: Kubernetes@1
   inputs:
