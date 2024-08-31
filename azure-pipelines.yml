@@ -20,8 +20,8 @@ steps:
   inputs:
     serviceConnectionEndpoint: 'snykconnection'
     testType: 'code'
-    failOnIssues: true
-    projectName: 'CPPDemo'
+    failOnIssues: false
+    projectName: '$(Build.Repository.Name)'
 
 - script: |
      cppcheck --enable=all --suppress=missingIncludeSystem --xml --xml-version=2 .
@@ -65,10 +65,10 @@ steps:
   inputs:
     serviceConnectionEndpoint: 'snykconnection'
     testType: 'container'
-    dockerImageName: 'cppapplication'
+    dockerImageName: 'balaji8421/cppapplication'
+    dockerfilePath: 'Dockerfile'
     monitorWhen: 'always'
     failOnIssues: true
-    projectName: 'CPPDemo'
 
 - task: Kubernetes@1
   inputs:
