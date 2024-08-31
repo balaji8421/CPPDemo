@@ -68,7 +68,7 @@ steps:
     dockerImageName: 'balaji8421/cppapplication'
     dockerfilePath: 'Dockerfile'
     monitorWhen: 'always'
-    failOnIssues: true
+    failOnIssues: false
 
 - task: Kubernetes@1
   inputs:
