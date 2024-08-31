@@ -1,10 +1,16 @@
 # Stage 1: Build
 FROM gcc:latest as builder
+
+#insatll cmake
+RUN apt-get update && apt-get install -y cmake
+
 WORKDIR /app
 
 # Copy only necessary files for dependencies and build
 COPY CMakeLists.txt ./
 COPY src/ ./src/
+
+#Build the application
 RUN cmake . && make
 
 # Stage 2: Run
