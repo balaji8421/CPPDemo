@@ -9,6 +9,7 @@ WORKDIR /app
 # Copy only necessary files for dependencies and build
 COPY CMakeLists.txt ./
 COPY src/ ./src/
+COPY tests/ ./tests
 
 #Build the application
 RUN cmake . && make
