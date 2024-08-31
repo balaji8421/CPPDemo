@@ -1,20 +1,18 @@
-# Use an official GCC compiler image as a parent image
-FROM gcc:11
+# Stage 1: Build
+FROM gcc:latest as builder
+WORKDIR /app
 
-# Set the working directory inside the container
-WORKDIR /usr/src/app
+# Copy only necessary files for dependencies and build
+COPY CMakeLists.txt ./
+COPY src/ ./src/
+RUN cmake . && make
 
-# Copy the current directory contents into the container at /usr/src/app
-COPY . .
+# Stage 2: Run
+FROM alpine:latest
+WORKDIR /app
 
-#Clean up the preious build
-RUN rm -rf build
+# Copy the built executable from the builder stage
+COPY --from=builder /app/myapp .
 
-# Install CMake
-RUN apt-get update && apt-get install -y cmake
-
-# Create a build directory and compile the application
-RUN mkdir -p build && cd build && cmake .. && make
-
-# Command to run your executable
-CMD ["./build/hello_world"]
+# Run the application
+CMD ["./myapp"]
