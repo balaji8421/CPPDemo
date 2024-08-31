@@ -4,12 +4,16 @@ FROM gcc:11 as builder
 # Set the working directory
 WORKDIR /usr/src/app
 
-# Install dependencies
-RUN apt-get update && apt-get install -y cmake
-
 # Copy the source code
 COPY . .
 
+#Clean up the preious build
+RUN rm -rf build
+
+# Install dependencies
+RUN apt-get update && apt-get install -y cmake
+
+#
 # Create a build directory and compile the application
 RUN mkdir -p build && cd build && cmake .. && make
 
