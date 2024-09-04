@@ -28,7 +28,7 @@ steps:
   displayName: 'Run Cppcheck (Static Code Analysis)'
 
 - script: |
-      cppcheck-htmlreport --file=cppcheck_report.xml --report-dir=cppcheck_report
+      cppcheck-htmlreport --file=cppcheck_report.xml --report-dir=cppcheck_report --source-dir=.
   displayName: 'Generate Cppcheck HTML Report'
 
 - task: PublishBuildArtifacts@1
