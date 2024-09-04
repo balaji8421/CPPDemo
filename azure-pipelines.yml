@@ -24,7 +24,7 @@ steps:
     projectName: '$(Build.Repository.Name)'
 
 - script: |
-     cppcheck --enable=all --suppress=missingIncludeSystem --xml --xml-version=2 . >cppcheck_report.xml
+     cppcheck --enable=all --suppress=missingIncludeSystem --xml --xml-version=2 . 2>cppcheck_report.xml
   displayName: 'Run Cppcheck (Static Code Analysis)'
 
 - script: |
