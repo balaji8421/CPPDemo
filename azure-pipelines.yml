@@ -28,6 +28,17 @@ steps:
   displayName: 'Run Cppcheck (Static Code Analysis)'
 
 - script: |
+      cppcheck-htmlreport --file=cppcheck_report.xml --report-dir=cppcheck_report
+  displayName: 'Generate Cppcheck HTML Report'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'cppcheck_report'
+    ArtifactName: 'CppcheckReport'
+    publishLocation: 'Container'
+  displayName: 'Publish Cppcheck Report'
+
+- script: |
      mkdir -p $(buildDirectory)
      cd $(buildDirectory)
      cmake .. -DCMAKE_BUILD_TYPE=$(buildConfiguration)
