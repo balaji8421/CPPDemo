@@ -15,7 +15,7 @@ hello::~hello() {}
 
 void hello::run() {
     std::string input;
-    std::cout << "Application is running... Type 'exit' to quit." << std::endl;
+    std::cout << "Application is running... Type 'exit' to quit." << std::ends;
     
     while (true) {
         std::cin >> input;
